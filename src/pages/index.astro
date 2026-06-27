@@ -1,0 +1,138 @@
+---
+import Base from "../layouts/Base.astro";
+import PostMeta from "../components/PostMeta.astro";
+import { site } from "../../site.config";
+import { getPublishedPosts } from "../lib/posts";
+
+const posts = await getPublishedPosts();
+const recentPosts = posts.slice(0, 5);
+
+const socialLabels: Record<string, string> = {
+  twitter: "X (Twitter)",
+  github: "GitHub",
+  linkedin: "LinkedIn",
+  mastodon: "Mastodon",
+};
+
+const socialLinks = Object.entries(site.links);
+---
+
+<Base title={site.title} description={site.description}>
+  <section class="about">
+    <img
+      src="/images/profile.webp"
+      alt={site.author}
+      class="profile-picture"
+    />
+    <div>
+      <h1 class="name">{site.author}</h1>
+      <p>Tech lead and backend engineer focused on architecting and building secure and scalable services.</p>
+      <nav class="social" aria-label="Social links">
+        {socialLinks.map(([key, url]) => (
+          <a href={url} rel="me noopener noreferrer" target="_blank">
+            {socialLabels[key] ?? key}
+          </a>
+        ))}
+        <a href="/blog/rss.xml">RSS</a>
+      </nav>
+    </div>
+  </section>
+  <main id="main">
+    <section>
+      <h3>Latest posts</h3>
+      <ul role="list">
+        {
+          recentPosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              <PostMeta date={post.publishDate} readTime={post.readTime} />
+            </li>
+          ))
+        }
+      </ul>
+      <p class="more"><a href="/blog">All posts &rarr;</a></p>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .about {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .name {
+    font-size: 1.17em;
+    color: var(--text);
+  }
+
+  .profile-picture {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    font-size: var(--font-sm);
+  }
+
+  .social a {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .social a:hover {
+    background: var(--bg-subtle);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: var(--space-md);
+  }
+
+  li {
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (min-width: 40rem) {
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-md);
+    }
+
+    li .meta {
+      flex-shrink: 0;
+    }
+  }
+
+  li a {
+    text-decoration: none;
+  }
+
+  li a:hover {
+    text-decoration: underline;
+  }
+
+  .more {
+    margin-bottom: 0;
+  }
+</style>

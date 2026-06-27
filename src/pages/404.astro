@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../../site.config";
+---
+
+<Base title={`Page not found — ${site.title}`}>
+  <header>
+    <h1>Page not found</h1>
+  </header>
+  <main id="main">
+    <p>The page you're looking for doesn't exist.</p>
+    <p><a href="/">Go to the homepage</a> or <a href="/blog">browse all posts</a>.</p>
+  </main>
+</Base>

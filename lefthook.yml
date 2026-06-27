@@ -1,0 +1,10 @@
+pre-commit:
+  jobs:
+    - name: fmt
+      glob: "*.{js,ts,json,astro}"
+      run: oxfmt {staged_files}
+      stage_fixed: true
+    - name: lint
+      glob: "*.{js,ts,astro}"
+      run: oxlint --fix {staged_files}
+      stage_fixed: true

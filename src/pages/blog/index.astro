@@ -1,0 +1,74 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostMeta from "../../components/PostMeta.astro";
+import { site } from "../../../site.config";
+import { getPublishedPosts } from "../../lib/posts";
+
+const posts = await getPublishedPosts();
+const astroSite = Astro.site!;
+const siteUrl = astroSite.href;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: site.title, item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Blog" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: posts.map((post, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: new URL(`/blog/${post.id}`, astroSite).href,
+    })),
+  },
+];
+---
+
+<Base title={`Blog — ${site.title}`} description={site.description}>
+  {jsonLd.map((schema) => (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+  <header>
+    <h1>Blog</h1>
+  </header>
+  <main id="main">
+    <ul role="list">
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}`}><h2>{post.data.title}</h2></a>
+            <PostMeta date={post.publishDate} readTime={post.readTime} />
+            <p>{post.data.description}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Base>
+
+<style>
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+
+  li {
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+</style>

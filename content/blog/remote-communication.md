@@ -1,0 +1,39 @@
+---
+title: "I Changed My Mind About Remote Communication"
+publishedAt: "2024-02-25"
+description: "I used to believe remote communication was a difficult trade-off, until I found where it excelled."
+---
+
+There's been a long debate about remote vs on-site work. Some say remote is better because it cuts down on commuting and office costs and widens the talent pool. Some say it's worse because you miss the spontaneous hallway conversations, and maybe people aren't even working that hard if they're left unsupervised at home.
+
+I believe remote work is better for most, though I admit it might not be the best option for all. If close human connection is what drives you at work, or if you're just starting out and still need frequent mentoring and training, an on-site experience may be a better fit for you.
+
+Despite my thoughts on remote work, I mostly saw it as an acceptable balance of trade-offs. You don't get the productivity boost of direct in-person collaboration, but at least that's offset by the productivity gains of no commute and no office distractions. You don't get the serendipity of overhearing someone mentioning something relevant to your work, but at least by hiring globally instead of locally, you get access to potentially much better talent.
+
+One trade-off I believed was that face-to-face communication was simply better, but at least remote allowed us to communicate through geographies. Too bad we had to put up with Zoom fatigue, technical issues, bad sound quality, “if you're talking, you're on mute”.
+
+What I've realised is that yes, calls can be worse than in-person conversations, but the remote communication superpower lies elsewhere: asynchronous communication.
+
+Synchronous communication requires participants to engage synchronised at the same time. That can be meetings, calls or live chats, for instance. Honestly, I still believe on-site is a better experience here.
+
+Asynchronous communication doesn't require everyone to be in sync: they're free to engage whenever and however works best for them. That can be documentation, Pull Requests, recorded videos and so on.
+
+The first obvious reason why async communication is great is that it frees people to participate at their own time. If you're busy with your task, you can watch later. If you're on the school run, you can add your update when you're back. If you're participating in different projects with conflicting schedules, you can catch up on everything.
+
+This isn't just about letting people choose their time: even if there was no schedule flexibility, this is great because it works for people who couldn't show up. You don't miss the important communication because you were out sick that day. You can even get the latest communications from even before you've joined the team! This would be impossible for in-person meetings and hallway discussions.
+
+Let's take standups as an example. Every morning, the team gathers to report the status of each task and identify any blocker. I found face-to-face standups to be better than calls, that just add a layer of networking and technical issues. Calls were the necessary evil to be able to do a standup with global top talent instead of local talent only.
+
+However, if we switch from sync to async communication we get everyone posting their own update, no call needed. That's great because you no longer lose the discussion when the schedule doesn't suit you or when you're out that day. Perhaps it's not as good at sparking deeper discussions to brainstorm issues or identify blockers, but that's the trade-off. Or another advantage, if you view those as tangents taking time from the standup's purpose.
+
+What I've just recently realised is that there's an even bigger benefit of async communication: historical context. You're not just getting the most recent communication, you're getting all communications that ever happened, always available. Of course I knew this happened, it just hadn't clicked yet how powerful that could be.
+
+Getting back to the standups example, you not only get to check what anyone from any team reported that day, but you can also check their updates through time. This is useful to understand the progress of specific projects, to get a more objective view of how your direct reports are performing, or even for yourself to remember the noteworthy work you've been doing.
+
+I used to think face-to-face chats were more natural and pleasant, therefore better overall. But with these async communication benefits, they just sound objectively worse now. Imagine the wasted productivity from all the institutional knowledge lost from in-person discussions that never got recorded. No one else got access to those discussions, and even the participants weren't able to review them later. This isn't a trade-off, this is a disaster.
+
+This doesn't mean all sync communication is bad. Sometimes it's just easier to hop on a quick call to align on something when it's not working through writing. As always, there's the right tool for each job. It's just that we usually default to one tool, while another turns out to be much better for most of those jobs.
+
+To sum up, prefer async communication like writing over sync communication like calling. It's inclusive to those who would have missed the call, can be shared with people who don't attend those calls, and can be persisted through time for future reference. I'm now convinced that this is the most effective team communication strategy.
+
+Fun fact: this realisation was one of the triggers that got me to [start blogging again](/blog/about/). Instead of repeating the same points over and over again in different discussions, I can publish them once, and make them available to everyone, at any time. What a bargain!

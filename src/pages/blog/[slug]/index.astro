@@ -1,0 +1,122 @@
+---
+import Base from "../../../layouts/Base.astro";
+import PostMeta from "../../../components/PostMeta.astro";
+import { render } from "astro:content";
+import { site } from "../../../../site.config";
+import { getPublishedPosts } from "../../../lib/posts";
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const astroSite = Astro.site!;
+const postUrl = new URL(Astro.url.pathname, astroSite).href;
+const encodedUrl = encodeURIComponent(postUrl);
+const encodedTitle = encodeURIComponent(post.data.title);
+const { Content } = await render(post);
+---
+
+<Base title={`${post.data.title} — ${site.title}`} description={post.data.description} image={`/blog/${post.id}/og.png`} article={{ publishedAt: post.publishDate.toISOString() }}>
+  <header>
+    <h1>{post.data.title}</h1>
+    <PostMeta date={post.publishDate} readTime={post.readTime} />
+  </header>
+  <main id="main">
+    <article>
+      <Content />
+    </article>
+  </main>
+  <aside class="post-footer">
+    <nav class="share" aria-label="Share this post">
+      <span>Share on</span>
+      <a
+        href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        X (Twitter)
+      </a>
+      <a
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </a>
+      <button class="copy-link" data-url={postUrl} aria-live="polite">Copy link</button>
+    </nav>
+    <p>Want more posts? Subscribe to the <a href="/blog/rss.xml">RSS feed</a>.</p>
+  </aside>
+  <script>
+    document.querySelectorAll(".copy-link").forEach((button) => {
+      if (!(button instanceof HTMLButtonElement)) return;
+
+      button.addEventListener("click", async () => {
+        const url = button.dataset.url;
+        if (!url) return;
+
+        const original = button.textContent;
+
+        try {
+          await navigator.clipboard.writeText(url);
+          button.textContent = "Copied!";
+        } catch {
+          button.textContent = "Copy failed";
+        }
+
+        setTimeout(() => (button.textContent = original), 2000);
+      });
+    });
+  </script>
+</Base>
+
+<style>
+  .post-footer {
+    margin-top: 3rem;
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: var(--font-sm);
+  }
+
+  .share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .share a,
+  .share button {
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    background: none;
+    font: inherit;
+    font-size: var(--font-sm);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  .share a:hover,
+  .share button:hover {
+    background: var(--bg-subtle);
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .share a:focus-visible,
+  .share button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
