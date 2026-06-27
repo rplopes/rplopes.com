@@ -23,7 +23,7 @@ const jsonLd = [
     itemListElement: posts.map((post, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: new URL(`/blog/${post.id}`, astroSite).href,
+      url: new URL(`/blog/${post.id}/`, astroSite).href,
     })),
   },
 ];
@@ -41,7 +41,7 @@ const jsonLd = [
       {
         posts.map((post) => (
           <li>
-            <a href={`/blog/${post.id}`}><h2>{post.data.title}</h2></a>
+            <a href={`/blog/${post.id}/`}><h2>{post.data.title}</h2></a>
             <PostMeta date={post.publishDate} readTime={post.readTime} />
             <p>{post.data.description}</p>
           </li>

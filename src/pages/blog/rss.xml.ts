@@ -8,7 +8,7 @@ export const GET: APIRoute = async ({ site: siteUrl }) => {
 
   const items = posts
     .map((post) => {
-      const path = `/blog/${post.id}`;
+      const path = `/blog/${post.id}/`;
       return `    <item>
       <title>${escapeXml(post.data.title)}</title>
       <link>${baseUrl}${path}</link>

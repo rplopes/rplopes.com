@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ site: siteUrl }) => {
   const posts = await getPublishedPosts();
 
   const postList = posts
-    .map((post) => `- [${post.data.title}](${baseUrl}/blog/${post.id}): ${post.data.description}`)
+    .map((post) => `- [${post.data.title}](${baseUrl}/blog/${post.id}/): ${post.data.description}`)
     .join("\n");
 
   const body = `# ${site.title}
