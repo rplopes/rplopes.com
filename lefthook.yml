@@ -1,10 +1,13 @@
+output:
+  - failure
+
 pre-commit:
   jobs:
     - name: fmt
       glob: "*.{js,ts,json,astro}"
-      run: oxfmt {staged_files}
+      run: pnpm run fmt -- {staged_files}
       stage_fixed: true
     - name: lint
       glob: "*.{js,ts,astro}"
-      run: oxlint --fix {staged_files}
+      run: pnpm run lint:fix -- {staged_files}
       stage_fixed: true
